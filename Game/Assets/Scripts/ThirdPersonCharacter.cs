@@ -29,6 +29,34 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
+		public float JumpPower {
+			get { return m_JumpPower; }
+		}
+
+		public float MoveSpeedMultiplier {
+			get { return m_MoveSpeedMultiplier; }
+		}
+
+		public float AnimSpeedMultiplier {
+			get { return m_AnimSpeedMultiplier; }
+		}
+
+		public float GroundCheckDistance {
+			get { return m_GroundCheckDistance; }
+		}
+
+		public Rigidbody Rigidbody {
+			get { return m_Rigidbody; }
+		}
+
+		public Animator Animator {
+			get { return m_Animator; }
+		}
+
+		public bool IsGrounded {
+			get { return m_IsGrounded; }
+		}
+
 
 		void Start()
 		{
