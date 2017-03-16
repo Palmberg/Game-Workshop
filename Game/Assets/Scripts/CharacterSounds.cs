@@ -7,70 +7,91 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 	[RequireComponent(typeof(ThirdPersonCharacter))]
     public class CharacterSounds : MonoBehaviour
     {
-        public AudioSource audioSrc;
-        public ThirdPersonCharacter character;
+        AudioSource audioSrc;
+        [Header("Steps")]
+        public float walkVolume = 0.7f;
+        public float runVolume = 1f;
+        public float landVolMultiplier = 0.5f;
         public AudioClip[] concrete;
         public AudioClip[] wood;
         public AudioClip[] dirt;
         public AudioClip[] metal;
 
-        private bool step = true;
-		float audioStepLength;
+        AudioSource voiceAudioSrc;
+        [Header("Voice")]
+        public float voiceVolume = 1f;
+        public AudioClip[] jumpSounds;
+        public AudioClip fallSound;
+        public AudioClip[] bumpSounds;
+
+        ThirdPersonCharacter character;
+        bool step = true;
         const float origAudioStepLengthWalk = 0.3f;
         const float origAudioStepLengthRun = 0.25f;
 
+        bool falling = false;
+        bool bump = true;
+
 		void Start() {
 			audioSrc = gameObject.AddComponent<AudioSource>();
+            audioSrc.spatialBlend = 1f; // Make it a 3D source
+            voiceAudioSrc = gameObject.AddComponent<AudioSource>();
+            voiceAudioSrc.spatialBlend = 1f; // Make it a 3D source
+            character = gameObject.GetComponent<ThirdPersonCharacter>();
 		}
 
+        void FixedUpdate() {
+            // TODO: PlayFallingSound() when at certain y velocity and only once
+            if(!falling && character.Rigidbody.velocity.y < -18f) {
+                falling = true;
+                PlayFallingSound();
+            } else if(character.Rigidbody.velocity.y > -6f) {
+                falling = false;
+            }
+        }
+
 		void PlayWalkSound() {
-            float audioStepLengthWalk = origAudioStepLengthWalk/(character.MoveSpeedMultiplier*character.AnimSpeedMultiplier);
+            float stepLength = origAudioStepLengthWalk/(character.MoveSpeedMultiplier*character.AnimSpeedMultiplier);
 			RaycastHit hit;
 			// 0.1f is a small offset to start the ray from inside the character
 			// it is also good to note that the transform position in the sample assets is at the base of the character
 			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hit, character.GroundCheckDistance))
 			{
-				float forward = character.Animator.GetFloat("Forward");
-				bool isWalking = (forward > 0.15f && forward < 0.75f) ? true : false;
-				bool isRunning = forward >= 0.75f ? true : false;
-
 				GameObject hitObj = hit.transform.gameObject;
-				Vector3 charVelocity = character.Rigidbody.velocity;
 
 				if (character.IsGrounded && step)
 				{
                     if(hitObj.name.Contains("Ground"))
-					    PlayConcreteSound(0.1f, audioStepLengthWalk);
+					    PlayConcreteSound(walkVolume, stepLength);
                     else if (hitObj.name.Contains("Ramp"))
-					    PlayWoodSound(0.1f, audioStepLengthWalk);
+					    PlayWoodSound(walkVolume, stepLength);
                     else if (hitObj.tag == "Dirt")
-                        PlayDirtSound(0.1f, audioStepLengthWalk);
+                        PlayDirtSound(walkVolume, stepLength);
                     else if (hitObj.name.Contains("Container"))
-                        PlayMetalSound(0.1f, audioStepLengthWalk);
+                        PlayMetalSound(walkVolume, stepLength);
                 }
 			}
 		}
 
         void PlayRunSound() {
-            float audioStepLengthRun = origAudioStepLengthRun/(character.MoveSpeedMultiplier*character.AnimSpeedMultiplier);
+            float stepLength = origAudioStepLengthRun/(character.MoveSpeedMultiplier*character.AnimSpeedMultiplier);
 			RaycastHit hit;
 			// 0.1f is a small offset to start the ray from inside the character
 			// it is also good to note that the transform position in the sample assets is at the base of the character
 			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hit, character.GroundCheckDistance))
 			{
                 GameObject hitObj = hit.transform.gameObject;
-				Vector3 charVelocity = character.Rigidbody.velocity;
 
                 if (character.IsGrounded && step)
 				{
                     if(hitObj.name.Contains("Ground"))
-					    PlayConcreteSound(0.3f, audioStepLengthRun);
+					    PlayConcreteSound(runVolume, stepLength);
                     else if (hitObj.name.Contains("Ramp"))
-					    PlayWoodSound(0.3f, audioStepLengthRun);
-                    else if (hitObj.tag == "Dirt")
-                        PlayDirtSound(0.3f, audioStepLengthRun);
+					    PlayWoodSound(runVolume, stepLength);
+                    else if (hitObj.name.Contains("BoxSmall"))
+                        PlayWoodSound(runVolume, stepLength);
                     else if (hitObj.name.Contains("Container"))
-                        PlayMetalSound(0.3f, audioStepLengthRun);
+                        PlayMetalSound(runVolume, stepLength);
                 }
             }
         }
@@ -81,34 +102,60 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hit, character.GroundCheckDistance))
                 {
                     GameObject hitObj = hit.transform.gameObject;
-                    float volume = collision.relativeVelocity.y/12f;
+                    float volume = Mathf.Max(collision.relativeVelocity.y*landVolMultiplier, 1.5f);
 
                     if(hitObj.name.Contains("Ground"))
 					    PlayConcreteSound(volume, 0.05f);
                     else if (hitObj.name.Contains("Ramp"))
 					    PlayWoodSound(volume, 0.05f);
-                    else if (hitObj.tag == "Dirt")
-                        PlayDirtSound(volume, 0.05f);
+                    else if (hitObj.name.Contains("BoxSmall"))
+                        PlayWoodSound(volume, 0.05f);
                     else if (hitObj.name.Contains("Container"))
                         PlayMetalSound(volume, 0.05f);
                 }
 			}
-			
+
+            // TODO: Fix bump logic  & sounds
+            if (bump && collision.relativeVelocity.magnitude > 5f && collision.relativeVelocity.y < 5f) {
+                float volume = Mathf.Max(collision.relativeVelocity.magnitude*0.15f, 1f);
+                PlayBumpSound(volume);
+            }
 		}
 
-        void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-			
-        }
-
-        IEnumerator WaitForFootSteps(float stepsLength)
+        IEnumerator WaitForFootSteps(float stepLength)
         {
             step = false;
-            yield return new WaitForSeconds(stepsLength);
+            yield return new WaitForSeconds(stepLength);
             step = true;
         }
 
-        // CONCRETE
+        IEnumerator WaitForBump(float time)
+        {
+            bump = false;
+            yield return new WaitForSeconds(time);
+            bump = true;
+        }
+
+        public void PlayJumpSound() {
+            AudioClip clip = jumpSounds[Random.Range(0, jumpSounds.Length)];
+            voiceAudioSrc.pitch = Random.Range(0.9f, 1.1f);
+            float volume = Random.Range(voiceVolume, voiceVolume+0.1f);
+            voiceAudioSrc.PlayOneShot(clip, volume);
+        }
+
+        void PlayFallingSound() {
+            voiceAudioSrc.pitch = 1f;
+            float volume = Random.Range(voiceVolume, voiceVolume+0.1f);
+            voiceAudioSrc.PlayOneShot(fallSound, volume);
+        }
+
+        void PlayBumpSound(float volume) {
+            AudioClip clip = bumpSounds[Random.Range(0, bumpSounds.Length)];
+            voiceAudioSrc.pitch = Random.Range(0.9f, 1.1f);
+            voiceAudioSrc.PlayOneShot(clip, volume);
+            StartCoroutine(WaitForBump(0.1f));
+        }
+
         void PlayConcreteSound(float volume, float stepLength)
         {
             AudioClip clip = concrete[Random.Range(0, concrete.Length)];
@@ -118,30 +165,27 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             StartCoroutine(WaitForFootSteps(stepLength));
         }
 
-        // WOOD
         void PlayWoodSound(float volume, float stepLength)
         {
-            AudioClip clip = wood[Random.Range(0, concrete.Length)];
+            AudioClip clip = wood[Random.Range(0, wood.Length)];
             audioSrc.PlayOneShot(clip, volume);
             audioSrc.pitch = Random.Range(0.9f, 1.1f);
             volume = Random.Range(volume, volume+0.05f);
             StartCoroutine(WaitForFootSteps(stepLength));
         }
 
-        // DIRT 
         void PlayDirtSound(float volume, float stepLength)
         {
-            AudioClip clip = dirt[Random.Range(0, concrete.Length)];
+            AudioClip clip = dirt[Random.Range(0, dirt.Length)];
             audioSrc.PlayOneShot(clip, volume);
             audioSrc.pitch = Random.Range(0.9f, 1.1f);
             volume = Random.Range(volume, volume+0.05f);
             StartCoroutine(WaitForFootSteps(stepLength));
         }
 
-        // METAL
         void PlayMetalSound(float volume, float stepLength)
         {
-            AudioClip clip = metal[Random.Range(0, concrete.Length)];
+            AudioClip clip = metal[Random.Range(0, metal.Length)];
             audioSrc.PlayOneShot(clip, volume);
             audioSrc.pitch = Random.Range(0.9f, 1f);
             volume = Random.Range(volume, volume+0.05f);
