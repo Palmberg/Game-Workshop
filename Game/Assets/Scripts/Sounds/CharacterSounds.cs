@@ -3,7 +3,6 @@ using System.Collections;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-	[RequireComponent(typeof(AudioSource))]
 	[RequireComponent(typeof(ThirdPersonCharacter))]
     public class CharacterSounds : MonoBehaviour
     {
@@ -61,13 +60,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				if (character.IsGrounded && step)
 				{
                     if(hitObj.name.Contains("Ground"))
-					    PlayConcreteSound(walkVolume, stepLength);
+                        playWalkSound(concrete, walkVolume, stepLength);
                     else if (hitObj.name.Contains("Ramp"))
-					    PlayWoodSound(walkVolume, stepLength);
-                    else if (hitObj.name.Contains("Dirt"))
-                        PlayDirtSound(walkVolume, stepLength);
+					    playWalkSound(wood, walkVolume, stepLength);
+                    else if (hitObj.name.Contains("BoxSmall"))
+                        playWalkSound(wood, walkVolume, stepLength);
                     else if (hitObj.name.Contains("Container"))
-                        PlayMetalSound(walkVolume, stepLength);
+                        playWalkSound(metal, walkVolume, stepLength);
                 }
 			}
 		}
@@ -84,13 +83,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 if (character.IsGrounded && step)
 				{
                     if(hitObj.name.Contains("Ground"))
-					    PlayConcreteSound(runVolume, stepLength);
+                        playWalkSound(concrete, runVolume, stepLength);
                     else if (hitObj.name.Contains("Ramp"))
-					    PlayWoodSound(runVolume, stepLength);
+					    playWalkSound(wood, runVolume, stepLength);
                     else if (hitObj.name.Contains("BoxSmall"))
-                        PlayWoodSound(runVolume, stepLength);
+                        playWalkSound(wood, runVolume, stepLength);
                     else if (hitObj.name.Contains("Container"))
-                        PlayMetalSound(runVolume, stepLength);
+                        playWalkSound(metal, runVolume, stepLength);
                 }
             }
         }
@@ -103,22 +102,22 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 {
                     GameObject hitObj = hit.transform.gameObject;
                     float volume = Mathf.Max(collision.relativeVelocity.y*landVolMultiplier, 1.5f);
+                    float stepLength = 0.05f;
 
                     if(hitObj.name.Contains("Ground"))
-					    PlayConcreteSound(volume, 0.05f);
+                        playWalkSound(concrete, volume, stepLength);
                     else if (hitObj.name.Contains("Ramp"))
-					    PlayWoodSound(volume, 0.05f);
+					    playWalkSound(wood, volume, stepLength);
                     else if (hitObj.name.Contains("BoxSmall"))
-                        PlayWoodSound(volume, 0.05f);
+                        playWalkSound(wood, volume, stepLength);
                     else if (hitObj.name.Contains("Container"))
-                        PlayMetalSound(volume, 0.05f);
+                        playWalkSound(metal, volume, stepLength);
                 }
 			}
 
             // When bumping into another character
-            // TODO: Use the actual tag of AI
-            if (bump && collision.relativeVelocity.magnitude > 5f && collision.transform.gameObject.CompareTag("AI")) {
-                float volume = Mathf.Max(collision.relativeVelocity.magnitude*0.15f, 1f);
+            if (bump && collision.relativeVelocity.magnitude > 4f && (collision.transform.gameObject.CompareTag("AI") || collision.transform.gameObject.CompareTag("Player"))) {
+                float volume = Mathf.Max(collision.relativeVelocity.magnitude*0.3f, 1.2f);
                 PlayBumpSound(volume);
             }
 		}
@@ -157,39 +156,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             StartCoroutine(WaitForBump(0.1f));
         }
 
-        void PlayConcreteSound(float volume, float stepLength)
-        {
-            AudioClip clip = concrete[Random.Range(0, concrete.Length)];
-            audioSrc.pitch = Random.Range(0.9f, 1.1f);
-            volume = Random.Range(volume, volume+0.05f);
-            audioSrc.PlayOneShot(clip, volume);
-            StartCoroutine(WaitForFootSteps(stepLength));
-        }
-
-        void PlayWoodSound(float volume, float stepLength)
-        {
-            AudioClip clip = wood[Random.Range(0, wood.Length)];
-            audioSrc.PlayOneShot(clip, volume);
-            audioSrc.pitch = Random.Range(0.9f, 1.1f);
-            volume = Random.Range(volume, volume+0.05f);
-            StartCoroutine(WaitForFootSteps(stepLength));
-        }
-
-        void PlayDirtSound(float volume, float stepLength)
-        {
-            AudioClip clip = dirt[Random.Range(0, dirt.Length)];
-            audioSrc.PlayOneShot(clip, volume);
-            audioSrc.pitch = Random.Range(0.9f, 1.1f);
-            volume = Random.Range(volume, volume+0.05f);
-            StartCoroutine(WaitForFootSteps(stepLength));
-        }
-
-        void PlayMetalSound(float volume, float stepLength)
-        {
-            AudioClip clip = metal[Random.Range(0, metal.Length)];
-            audioSrc.PlayOneShot(clip, volume);
+        void playWalkSound(AudioClip[] clips, float volume, float stepLength) {
+            AudioClip clip = clips[Random.Range(0, clips.Length)];
             audioSrc.pitch = Random.Range(0.9f, 1f);
             volume = Random.Range(volume, volume+0.05f);
+            audioSrc.PlayOneShot(clip, volume);
             StartCoroutine(WaitForFootSteps(stepLength));
         }
 

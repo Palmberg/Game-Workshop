@@ -12,7 +12,7 @@ public class AmbientSoundsAndMusic : MonoBehaviour {
 	[Header("Music")]
 	public AudioClip music;
 	[Range(0.01f,1f)]
-	public float musicVolume = 0.5f;
+	public float musicVolume = 0.4f;
 
 	[Header("Suspense")]
 	public AudioClip suspenseSound;
