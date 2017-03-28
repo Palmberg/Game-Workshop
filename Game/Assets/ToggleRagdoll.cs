@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
-	public class ToggleRagdollHjalp : MonoBehaviour {
+	public class ToggleRagdoll : MonoBehaviour {
 		
 		//Skeleton variables
 		private Collider[] rigColliders;
@@ -70,11 +70,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				//Check ragdoll status, and enable accordingly
 				if(ragdollEnabled == true){
 					
-					RagdollOFF();
+					//Write something here
 				}
 				else {
 					
-					RagdollON();
+					//Write something here
 				}
 			}
 			
