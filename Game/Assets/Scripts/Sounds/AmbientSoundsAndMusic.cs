@@ -7,11 +7,10 @@ public class AmbientSoundsAndMusic : MonoBehaviour {
 	[Header("Ambient")]
 	public AudioClip ambientSound;
 	[Range(0.01f,1f)]
-	public float ambientVolume = 0.2f;
+	public float ambientVolume = 0.35f;
 
-	private const int MUSIC_SIZE = 2;
 	[Header("Music")]
-	public AudioClip[] music = new AudioClip[MUSIC_SIZE];
+	public AudioClip music;
 	[Range(0.01f,1f)]
 	public float musicVolume = 0.5f;
 
@@ -46,6 +45,7 @@ public class AmbientSoundsAndMusic : MonoBehaviour {
 		ambientSrc.clip = ambientSound;
 		ambientSrc.volume = ambientVolume;
 		ambientSrc.loop = true;
+		ambientSrc.time = Random.Range(0,ambientSrc.clip.length);
 		ambientSrc.Play();
 
 		musicSrc.volume = musicVolume;
@@ -62,8 +62,8 @@ public class AmbientSoundsAndMusic : MonoBehaviour {
 	}
 
 	public void PlayFirstSong() {
-		if(!musicSrc.isPlaying || musicSrc.clip != music[0]) {
-			musicSrc.clip = music[0];
+		if(!musicSrc.isPlaying || musicSrc.clip != music) {
+			musicSrc.clip = music;
 			musicSrc.Play();
 		}
 	}
@@ -84,6 +84,7 @@ public class AmbientSoundsAndMusic : MonoBehaviour {
 	}
 
 	public void PlayWin() {
+		musicSrc.Stop();
 		winSrc.Play();
 	}
 }

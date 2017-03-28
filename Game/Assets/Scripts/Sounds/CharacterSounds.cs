@@ -41,7 +41,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		}
 
         void FixedUpdate() {
-            // TODO: PlayFallingSound() when at certain y velocity and only once
             if(!falling && character.Rigidbody.velocity.y < -18f) {
                 falling = true;
                 PlayFallingSound();
@@ -65,7 +64,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 					    PlayConcreteSound(walkVolume, stepLength);
                     else if (hitObj.name.Contains("Ramp"))
 					    PlayWoodSound(walkVolume, stepLength);
-                    else if (hitObj.tag == "Dirt")
+                    else if (hitObj.name.Contains("Dirt"))
                         PlayDirtSound(walkVolume, stepLength);
                     else if (hitObj.name.Contains("Container"))
                         PlayMetalSound(walkVolume, stepLength);
@@ -97,6 +96,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
 
 		void OnCollisionEnter(Collision collision) {
+            // When landing from a jump/fall
 			if (collision.relativeVelocity.y > 3f) {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hit, character.GroundCheckDistance))
@@ -115,8 +115,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 }
 			}
 
-            // TODO: Fix bump logic  & sounds
-            if (bump && collision.relativeVelocity.magnitude > 5f && collision.relativeVelocity.y < 5f) {
+            // When bumping into another character
+            // TODO: Use the actual tag of AI
+            if (bump && collision.relativeVelocity.magnitude > 5f && collision.transform.gameObject.CompareTag("AI")) {
                 float volume = Mathf.Max(collision.relativeVelocity.magnitude*0.15f, 1f);
                 PlayBumpSound(volume);
             }

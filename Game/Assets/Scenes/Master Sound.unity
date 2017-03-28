@@ -241,7 +241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1001 &323692516
@@ -254,7 +255,7 @@ Prefab:
     - target: {fileID: 114507358604184612, guid: ac8ed545cdb580648bfaec7639eaeede,
         type: 2}
       propertyPath: bumpSounds.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4587645937604842, guid: ac8ed545cdb580648bfaec7639eaeede, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1179,6 +1180,11 @@ Prefab:
       propertyPath: bumpSounds.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 7c838efe84336a144bea7f211b5a3c8b, type: 3}
+    - target: {fileID: 114507358604184612, guid: ac8ed545cdb580648bfaec7639eaeede,
+        type: 2}
+      propertyPath: bumpSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: ae00b0a36e0959449bfb5d9d730689b0, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac8ed545cdb580648bfaec7639eaeede, type: 2}
   m_IsPrefabParent: 0
@@ -1199,7 +1205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!82 &384880744
@@ -1379,7 +1386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1 &713114315 stripped
@@ -1479,7 +1487,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!4 &755365928 stripped
@@ -1637,7 +1646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!4 &995318406 stripped
@@ -1711,16 +1721,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambientSound: {fileID: 8300000, guid: 76227968f2ea1ec4b86215b55aaf0aeb, type: 3}
-  ambientVolume: 0.2
-  music:
-  - {fileID: 8300000, guid: 4f13a6765dbcab249bda2cacca07497f, type: 3}
-  - {fileID: 0}
+  ambientVolume: 0.35
+  music: {fileID: 8300000, guid: 4f13a6765dbcab249bda2cacca07497f, type: 3}
   musicVolume: 0.45
   suspenseSound: {fileID: 8300000, guid: e8aca6e5c22430d4387c8151c5ce668a, type: 3}
   suspenseVolume: 0.5
   failSound: {fileID: 8300000, guid: 597f4c4987b229f419498714ca021df0, type: 3}
   failVolume: 0.5
-  winSound: {fileID: 8300000, guid: 42b9e7cfe9369084896a0f0f39ed2d90, type: 3}
+  winSound: {fileID: 8300000, guid: e3c6b865fb6508a4d81bef470f4b94ec, type: 3}
   winVolume: 0.7
 --- !u!4 &1102849898
 Transform:
@@ -1883,7 +1891,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1 &1205530590 stripped
@@ -1983,7 +1992,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1001 &1255406618
@@ -2532,7 +2542,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1 &1343735989
@@ -2642,7 +2653,7 @@ Light:
   m_SpotAngle: 50.79
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2758,7 +2769,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1 &1525747931
@@ -2921,7 +2933,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1 &1680490505
@@ -2948,7 +2961,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1680490505}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.11, y: 7.47, z: 23.03}
+  m_LocalPosition: {x: -0.18, y: 8.4, z: 21.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099156666}
@@ -2964,7 +2977,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.9, y: 1.42, z: 4}
+  m_Size: {x: 33.8, y: 0.17, z: 14.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1680490508
 MonoBehaviour:
@@ -3004,7 +3017,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 5, z: 6.8}
+  m_Size: {x: 4, y: 5, z: 12.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1746873206
 Transform:
@@ -3013,7 +3026,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1746873204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.09, y: 4.7, z: 2.93}
+  m_LocalPosition: {x: -31.09, y: 4.7, z: 0.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099156666}
@@ -3169,7 +3182,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1 &1864661400 stripped
@@ -3189,7 +3203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!82 &1864661402
@@ -3369,7 +3384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
 --- !u!1 &2122863596 stripped
@@ -3469,6 +3485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 97a6ab6b981e0894699b8fe4d18c0f97, type: 3}
+  - {fileID: 8300000, guid: 8a1e82331214acd478a94b357579960e, type: 3}
   slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
   slideSoundVolMultiplier: 1.2
