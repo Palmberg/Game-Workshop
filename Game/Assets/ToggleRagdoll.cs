@@ -109,6 +109,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			//Remember that ragdoll mode is enabled.
 			ragdollEnabled = true;
+			
+			//Update points
+			//GameObject.Find("gameManager").SendMessage("addScore", -50);
 		}
 		
 		void RagdollOFF(){

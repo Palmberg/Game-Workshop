@@ -23,6 +23,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 					//If there is a ragdoll script, call it's ragdoll function
 					script.RagdollON();
+					
+					//GameObject.Find("gameManager").SendMessage("addScore", -50);
 
 				}
 			}
