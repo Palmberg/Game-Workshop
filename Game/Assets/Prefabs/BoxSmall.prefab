@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1583308324606598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.5, y: 6.2, z: 0}
+  m_LocalPosition: {x: -40.06, y: 0.5, z: 18.056879}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,6 +76,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33812823523719204
 MeshFilter:
@@ -214,8 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9577256dd0530584c8668615ce8b5e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionSounds:
-  - {fileID: 8300000, guid: 4924028cf02dec3499b0f1ee05de4ec5, type: 3}
-  - {fileID: 8300000, guid: 3435e51fa07412542aa0909a647f3087, type: 3}
-  slideSound: {fileID: 8300000, guid: 34637e12de9c2a7488ae1da03f1e0803, type: 3}
+  collisionSounds: []
+  slideSound: {fileID: 0}
   slideSoundVolMultiplier: 1.2

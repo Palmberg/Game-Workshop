@@ -3132,7 +3132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123642}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -42.91, y: -2.7056914e-16, z: 12.19}
+  m_LocalPosition: {x: -33.53, y: 0, z: 20.93}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 445860}
@@ -3965,6 +3965,7 @@ SkinnedMeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
@@ -4131,7 +4132,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wingVolume: 1.3
-  wingSounds:
-  - {fileID: 8300000, guid: 9a5caa8a1fa796a4a945f5d380d78cda, type: 3}
-  - {fileID: 8300000, guid: 3faa9feb29bca4449954ce0aab15bc7e, type: 3}
-  - {fileID: 8300000, guid: 99fe271687629f945a9d82b7a333d868, type: 3}
+  wingSounds: []
